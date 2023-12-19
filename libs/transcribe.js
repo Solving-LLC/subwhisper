@@ -15,6 +15,7 @@ module.exports.transcribeAudio = async (audioPath) => {
       ...formData.getHeaders(),
     },
     maxBodyLength: 25 * 1024 * 1024,
-  });
+  }).catch(() =>  ({data: {}}));
+
   return response.data?.text || "";
 };
