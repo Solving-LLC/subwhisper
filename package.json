@@ -18,5 +18,13 @@
     "fluent-ffmpeg": "^2.1.2",
     "form-data": "^4.0.0",
     "progress": "^2.0.3"
+  },
+  "devDependencies": {
+      "husky": "^4.2.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npx prettier --write ."
+    }
   }
 }
