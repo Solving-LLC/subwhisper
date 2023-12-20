@@ -4,7 +4,7 @@ const ProgressBar = require("progress");
 const { extractAudioFromVideo } = require("./libs/extract");
 const { splitAudio } = require("./libs/split");
 const { transcribeAudio } = require("./libs/transcribe");
-const {mergeSubtitles} = require("./libs/subs");
+const { mergeSubtitles } = require("./libs/subs");
 
 const API_KEY = process.env.OPENAI_API_KEY;
 if (!API_KEY) {
@@ -16,14 +16,14 @@ const getVideoFiles = (dir) => {
   return fs.readdirSync(dir).filter((file) => /\.(mp4|avi|mov)$/i.test(file));
 };
 
-
-
 module.exports = async function processVideoFiles(dir = ".") {
   const videoFiles = getVideoFiles(dir);
   for (const file of videoFiles) {
     console.log(`Processing ${file}...`);
     try {
-      const audioPath = await extractAudioFromVideo(path.join(dir + "/" + file));
+      const audioPath = await extractAudioFromVideo(
+        path.join(dir + "/" + file),
+      );
       const audioSegments = await splitAudio(audioPath);
       fs.unlinkSync(audioPath); // remove audio file
 

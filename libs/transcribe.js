@@ -9,13 +9,15 @@ module.exports.transcribeAudio = async (audioPath) => {
   formData.append("file", fs.createReadStream(audioPath));
   formData.append("model", "whisper-1");
 
-  const response = await axios.post(API_ENDPOINT, formData, {
-    headers: {
-      Authorization: `Bearer ${API_KEY}`,
-      ...formData.getHeaders(),
-    },
-    maxBodyLength: 25 * 1024 * 1024,
-  }).catch(() =>  ({data: {}}));
+  const response = await axios
+    .post(API_ENDPOINT, formData, {
+      headers: {
+        Authorization: `Bearer ${API_KEY}`,
+        ...formData.getHeaders(),
+      },
+      maxBodyLength: 25 * 1024 * 1024,
+    })
+    .catch(() => ({ data: {} }));
 
   return response.data?.text || "";
 };

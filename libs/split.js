@@ -5,7 +5,6 @@ const { SEGMENT_DURATION } = require("../config");
 
 module.exports.splitAudio = (audioPath) => {
   return new Promise((resolve, reject) => {
-
     const baseName = path.basename(audioPath, ".mp3");
     const outputPath = `${path.dirname(audioPath)}/${baseName}_%03d.mp3`;
 
